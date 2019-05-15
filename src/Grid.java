@@ -23,11 +23,25 @@ public class Grid {
     }
 
     public int[] getHLine(int i){
-        return new int[]{0};
+        int len = (int) Math.sqrt(this.size);
+        int squareLine = i % len;
+        int[] line = new int[this.size];
+        for (int j = 0; j<len; j++){
+            int[] partOfLine = this.getSquare(squareLine * len + j).getHLine(squareLine);
+            System.arraycopy(partOfLine, 0, line, j*len, len);
+        }
+        return line;
     }
 
-    public int[] getVline(int i){
-        return new int[]{0};
+    public int[] getVLine(int i){
+        int len = (int) Math.sqrt(this.size);
+        int squareLine = i % len;
+        int[] line = new int[this.size];
+        for (int j = 0; j<len; j++){
+            int[] partOfLine = this.getSquare(squareLine + j*len).getVLine(squareLine);
+            System.arraycopy(partOfLine, 0, line, j*len, len);
+        }
+        return line;
     }
 
     public void populateFromFile(String path){

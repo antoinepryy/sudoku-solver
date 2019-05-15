@@ -7,6 +7,8 @@ public class Square {
     Square(int size) {
         this.size = size;
         this.square = new int[size];
+        Arrays.fill(this.square,  (int)(Math.random() * ( 10 ))
+        );
     }
 
     public int getCell(int i){
@@ -29,6 +31,16 @@ public class Square {
 
     }
 
+    public void setHLine(int i, int[] line){
+        int len = (int) Math.sqrt(this.size);
+        if(line.length == len){
+            for (int j = 0; j<len; j++){
+                this.square[i*len + j] = line[j];
+            }
+        }
+        else throw new ArrayIndexOutOfBoundsException("Invalid line size");
+    }
+
     public int[] getVLine(int i){
         int len = (int) Math.sqrt(this.size);
         int[] line = new int[len];
@@ -36,6 +48,17 @@ public class Square {
             line[j] = this.square[j*len + i];
         }
         return line;
+    }
+
+    public void setVLine(int i, int[] line){
+        int len = (int) Math.sqrt(this.size);
+        if (line.length == len){
+            for (int j = 0; j<len; j++){
+                this.square[j*len + i] = line[j];
+            }
+        }
+        else throw new ArrayIndexOutOfBoundsException("Invalid line size");
+
     }
 
     public String displaySquare(){
