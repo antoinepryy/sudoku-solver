@@ -8,7 +8,7 @@ public class Grid {
         this.size = size;
         this.grid = new Square[size];
         for (int i =0; i<size; i++){
-            this.grid[i] = new Square(size);
+            this.grid[i] = new Square(size, i);
         }
 
 
@@ -25,9 +25,10 @@ public class Grid {
     public int[] getHLine(int i){
         int len = (int) Math.sqrt(this.size);
         int squareLine = i % len;
+        int entPart = i / len;
         int[] line = new int[this.size];
         for (int j = 0; j<len; j++){
-            int[] partOfLine = this.getSquare(squareLine * len + j).getHLine(squareLine);
+            int[] partOfLine = this.getSquare(entPart*len+ j).getHLine(squareLine);
             System.arraycopy(partOfLine, 0, line, j*len, len);
         }
         return line;

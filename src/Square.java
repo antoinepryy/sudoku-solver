@@ -4,11 +4,10 @@ public class Square {
     private int[] square;
     private int size;
 
-    Square(int size) {
+    Square(int size, int n) {
         this.size = size;
         this.square = new int[size];
-        Arrays.fill(this.square,  (int)(Math.random() * ( 10 ))
-        );
+        for(int i = 0; i<size; i++) this.square[i] = n;
     }
 
     public int getCell(int i){
